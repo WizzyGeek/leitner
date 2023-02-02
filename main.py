@@ -2,23 +2,24 @@ from quests import cards
 from random import randint
 
 def main():
-    slots = (list(cards.items()), [], [], [], [])
-
-    choices = []
-
-    for idx, i in enumerate(slots):
-        for j in range(len(slots) - idx):
-            choices.append(i)
-
+    slots = (list(cards.items()), [], [])
+    box_chance_mul = [4, 2, 1]
     while True:
-        box = []
-        while not box: # hehe, evil smirk
-            f = randint(0, len(choices) - 1)
-            box: list = choices[f]
-        n = randint(0, len(box) - 1)
-        box_idx = slots.index(box)
-        q, a = box.pop(n)
+        wts = [len(i) * box_chance_mul[idx] for idx, i in enumerate(slots)]
+        f = randint(1, sum(wts)) - 1
+        box_idx = 0
+        a = 0
+        n = 0
+        for idx, i in enumerate(wts):
+            a += i
+            if f < a:
+                box_idx = idx
+                n = f - a + i
+                break
+        box = slots[box_idx]
+        q, a = box.pop(n // box_chance_mul[box_idx])
         print(chr(27) + "[2J")
+        # print(box_idx, f, n)
         print(q)
         print("-" * 4)
         input("Answer: ")
