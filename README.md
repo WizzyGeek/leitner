@@ -1,3 +1,4 @@
 # Leitner System
 
-I was gonna keep this private, but it is easier to share between devices when public
+[What is this?](https://en.wikipedia.org/wiki/Leitner_system) This is a CLI app to present flashcards
+Code is very basic, and uses nothing special.
