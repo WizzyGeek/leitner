@@ -1,5 +1,7 @@
+import sys
 from quests import cards
 from random import randint
+
 
 def main():
     slots = (list(cards.items()), [], [])
@@ -38,5 +40,10 @@ def main():
             if o and o[0].lower() == "y":
                 break
 
+
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except KeyboardInterrupt:
+        print("\nThanks for using Leitner")
+        sys.exit(130)
